@@ -16,7 +16,7 @@ class Main {
         RomeNum[] values = RomeNum.values();
         String[] mathem = math.split("[+-/*]");
         if ((RomeOrNotRome(mathem[0]) && ArabOrNotArab(mathem[1])) || (RomeOrNotRome(mathem[1]) && ArabOrNotArab(mathem[0]))) throw new Exception ("Невозможно использовать римские и арабские цифры в одном примере");
-        if (mathem.length != 2 && RomeOrNotRome(mathem[0]) && RomeOrNotRome(mathem[1])) {
+        if (mathem.length == 2 && RomeOrNotRome(mathem[0]) && RomeOrNotRome(mathem[1])) {
             if (RomeNum.valueOf(mathem[0]).ordinal() > -1 && RomeNum.valueOf(mathem[0]).ordinal() < 11 && RomeNum.valueOf(mathem[1]).ordinal() > -1 && RomeNum.valueOf(mathem[1]).ordinal() < 11) {
                 int f = RomeNum.valueOf(mathem[0]).ordinal();
                 int s = RomeNum.valueOf(mathem[1]).ordinal();
