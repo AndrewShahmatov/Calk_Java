@@ -8,33 +8,36 @@ class Main {
         String math = scann.replaceAll(" ", "");
         String p = testRomeOrArab(math);
         System.out.println(p);
+
+
     }
+
     public static String testRomeOrArab(String math) throws Exception {
         RomeNum[] values = RomeNum.values();
         String[] mathem = math.split("[+-/*]");
         if ((RomeOrNotRome(mathem[0]) && ArabOrNotArab(mathem[1])) || (RomeOrNotRome(mathem[1]) && ArabOrNotArab(mathem[0]))) throw new Exception ("Невозможно использовать римские и арабские цифры в одном примере");
-        if (mathem.length == 2 && RomeOrNotRome(mathem[0]) && RomeOrNotRome(mathem[1])) {
+        if (mathem.length != 2 && RomeOrNotRome(mathem[0]) && RomeOrNotRome(mathem[1])) {
             if (RomeNum.valueOf(mathem[0]).ordinal() > -1 && RomeNum.valueOf(mathem[0]).ordinal() < 11 && RomeNum.valueOf(mathem[1]).ordinal() > -1 && RomeNum.valueOf(mathem[1]).ordinal() < 11) {
                 int f = RomeNum.valueOf(mathem[0]).ordinal();
                 int s = RomeNum.valueOf(mathem[1]).ordinal();
                 if (math.contains("+")) {
                     int a = f + s;
-                    if (a > 0) throw new Exception ("Ошибка, нельзя дать отрицательное значение");{
+                    if (a < 0) throw new Exception ("Ошибка, нельзя дать отрицательное значение");{
                         return String.valueOf(values[a]);
                     }
                 } else if (math.contains("-")) {
                     int a = f - s;
-                    if (a > 0) throw new Exception ("Ошибка, нельзя дать отрицательное значение");{
+                    if (a < 0) throw new Exception ("Ошибка, нельзя дать отрицательное значение");{
                         return String.valueOf(values[a]);
                     }
                 } else if (math.contains("*")) {
                     int a = f * s;
-                    if (a > 0) throw new Exception ("Ошибка, нельзя дать отрицательное значение");{
+                    if (a < 0) throw new Exception ("Ошибка, нельзя дать отрицательное значение");{
                         return String.valueOf(values[a]);
                     }
                 } else if (math.contains("/")) {
                     int a = f / s;
-                    if (a > 0)  throw new Exception ("Ошибка, нельзя дать отрицательное значение");{
+                    if (a < 0)  throw new Exception ("Ошибка, нельзя дать отрицательное значение");{
                         return String.valueOf(values[a]);
                     }
                 } else throw new Exception ("Ошибка, недопустимый оператор");
@@ -46,6 +49,7 @@ class Main {
         }
         return "Конец программы";
     }
+
     public static boolean RomeOrNotRome(String value) {
         try {
             RomeNum.valueOf(value);
@@ -62,6 +66,9 @@ class Main {
             return false;
         }
     }
+
+
+
     public static String Arab(String[]mathem, String math) throws Exception {
         int x = Integer.parseInt(mathem[0]);
         int y = Integer.parseInt(mathem[1]);
